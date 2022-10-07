@@ -3,36 +3,35 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Catalog({setFilmId}) {
-    const [filmList, setFilmList] = useState([]);
+export default function Catalog({setSeatsArray}) {
+    const [movieList, setMovieList] = useState([]);
 
     useEffect(() => {
         const promisse = axios.get("https://mock-api.driven.com.br/api/v5/cineflex/movies");
         promisse.then((response) => {
-            setFilmList(response.data);
+            setMovieList(response.data);
+            setSeatsArray([])
         });
 
         promisse.catch(() => alert("Algo deu errado com a API"))
-    }, [])
+    }, [setSeatsArray])
     
     return (
         <CatalogContent>
             <h1>Selecione o filme 🎬</h1>
 
-            <FilmList>
-                {filmList.map((f, i) => (
-                    <Film key={i}>
-                        <Link onClick={() => setFilmId(`${f.id}`)} to={`/sessions/${f.id}`}><FilmPoster src={f.posterURL} alt="Poster do Filme" /></Link>
-                    </Film>
+            <MovieList>
+                {movieList.map((m, i) => (
+                    <Movie key={i}>
+                        <Link to={`/movie/${m.id}`}><MoviePoster src={m.posterURL} alt="Poster do Filme" /></Link>
+                    </Movie>
                 ))}
-            </FilmList>
+            </MovieList>
         </CatalogContent>
     );
 }
-
+// Styled Components //
 const CatalogContent = styled.div`
-    background-color: rgb(86,86,96);
-
     h1 {
         color: #DFE6ED;
         font-family: 'Roboto', sans-serif;
@@ -44,18 +43,18 @@ const CatalogContent = styled.div`
         justify-content: center;
     }
 `
-const FilmList = styled.ul`
+const MovieList = styled.ul`
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 `
-const Film = styled.li`
+const Movie = styled.li`
     margin-right: 30px;
     margin-left: 30px;
     margin-bottom: 30px;
 `
-const FilmPoster = styled.img`
-    width: 135px;
-    height: 196px;
+const MoviePoster = styled.img`
+    width: 127px;
+    height: 197px;
     box-shadow: 0px 0px 5px 5px rgba(210, 210, 212, 0.8);
 `

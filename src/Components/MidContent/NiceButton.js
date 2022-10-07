@@ -2,10 +2,11 @@ import styled from "styled-components"
 
 export default function NiceButton ({content}) {
     return (
-        <Button>{content}</Button>
+        <Button type="submit">{content}</Button>
     )
 }
 
+// Styled Components //
 const Button = styled.button `
     align-items: center;
     appearance: none;

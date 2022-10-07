@@ -1,19 +1,23 @@
 import styled from "styled-components"
 
-export default function Footer ({responseState}) {
+export default function SeatFooter ({responseState}) {
+    if (responseState.length === 0) {
+        return null
+    }
 
     return (
-        <FooterContent>
-            <PosterImg src={responseState.posterURL} alt="Poster Filme"/>
+        <Container>
+            <PosterImg src={responseState.movie.posterURL} alt="Poster Filme"/>
             <DataSession>
-                {responseState.title}
+                <span>{responseState.movie.title}</span>
+                <span>{responseState.day.weekday} - {responseState.name}</span>
             </DataSession>
-        </FooterContent>
+        </Container>
     )
 }
 
 // Styled Components //
-const FooterContent = styled.footer`
+const Container = styled.footer`
     position: fixed;
     left: 0;
     bottom: 0;
@@ -26,7 +30,7 @@ const FooterContent = styled.footer`
     justify-content: center;
     padding: 15px;
 
-    @media (max-width: 700px) {
+    @media (max-width: 600px) {
         justify-content: flex-start;
     }
 `
@@ -37,17 +41,18 @@ const PosterImg = styled.img `
 `
 const DataSession = styled.div `
     margin-left: 15px;
-    width: 20%;
+    width: 35%;
     height: 89px;
     font-family: 'Roboto';
     font-weight: 400;
-    font-size: 26px;
+    font-size: 20px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     text-align: center;
 
-    @media (max-width: 750px) {
+    @media (max-width: 600px) {
         width: 100%;
     }
 `

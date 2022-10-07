@@ -1,22 +1,24 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Footer from '../Components/Footer/Footer';
-import NiceButton from "../NiceButton"
+import NiceButton from "../Components/MidContent/NiceButton"
 
-export default function SessionsPage ({filmId}) {
+export default function MoviePage () {
+    const { movieId } = useParams ()
     const [sessionsList, setSessionsList] = useState([])
     const [responseState, setResponseState] = useState([])
 
     useEffect(() => {
-        const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${filmId}/showtimes`);
+        const promisse = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${movieId}/showtimes`);
         promisse.then((response) => {
             setSessionsList(response.data.days);
             setResponseState(response.data);
         });
 
-        promisse.catch(() => alert("Algo deu errado com a API sessoes"))
-    }, [filmId])
+        promisse.catch(() => alert("Algo deu errado com a API dos horários"))
+    }, [movieId])
 
     return (
         <>
@@ -27,7 +29,7 @@ export default function SessionsPage ({filmId}) {
                     <Session key={s.id}>
                         <span>{`${s.weekday} - ${s.date}`}</span>
                         <ButtonSession>
-                            {s.showtimes.map((t) => <NiceButton key={t.id} content={t.name}/>)}
+                            {s.showtimes.map((t) => <Link key={t.id} to={`/session/${t.id}`}><NiceButton content={t.name}/></Link>)}
                         </ButtonSession>
                     </Session>)}
             </SessionContent>
@@ -39,7 +41,6 @@ export default function SessionsPage ({filmId}) {
 
 // Styled Components //
 const SessionContent = styled.div `
-    background-color: rgb(86,86,96);
     margin-bottom: 120px;
     
     h1 {
@@ -78,4 +79,8 @@ const ButtonSession = styled.div`
     display: flex;
     justify-content: space-between;
     width: 180px;
+
+    a {
+        text-decoration: none;
+    }
 `
