@@ -27,7 +27,7 @@ export default function MoviePage () {
 
                 {sessionsList.map((s) =>
                     <Session key={s.id}>
-                        <span>{`${s.weekday} - ${s.date}`}</span>
+                        <span data-identifier="session-date">{`${s.weekday} - ${s.date}`}</span>
                         <ButtonSession>
                             {s.showtimes.map((t) => <Link key={t.id} to={`/session/${t.id}`}><NiceButton content={t.name}/></Link>)}
                         </ButtonSession>

@@ -3,15 +3,15 @@ import styled from "styled-components"
 export default function SeatsSubtitle() {
     return (
         <Subtitle>
-            <div>
+            <div data-identifier="seat-selected-subtitle">
                 <SeatEx color="#8DD7CF" border="#1AAE9E"/>
                 <span>Selecionado</span>
             </div>
-            <div>
+            <div data-identifier="seat-available-subtitle">
                 <SeatEx color="#FBE192" border="#F7C52B"/> 
                 <span>Disponível</span>
             </div>
-            <div>
+            <div data-identifier="seat-unavailable-subtitle">
                 <SeatEx color="#FA8072" border="#FF6347"/>
                 <span>Indisponível</span>
             </div>

@@ -53,6 +53,7 @@ export default function SessionPage ({setMovieData, setSeatsArray, seatsArray, r
                 <SeatsContent>
                     {seats.map((s) => 
                         <Seat
+                            data-identifier="seat"
                             onClick={() => selectSeat(s.isAvailable, s.id, s.name)}
                             key={s.id}
                             reserveIds={reserveIds}

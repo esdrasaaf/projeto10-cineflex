@@ -4,8 +4,8 @@ export default function Footer ({responseState}) {
 
     return (
         <FooterContent>
-            <PosterImg src={responseState.posterURL} alt="Poster Filme"/>
-            <DataSession>
+            <PosterImg data-identifier="movie-img-preview" src={responseState.posterURL} alt="Poster Filme"/>
+            <DataSession data-identifier="movie-and-session-infos-preview">
                 {responseState.title}
             </DataSession>
         </FooterContent>

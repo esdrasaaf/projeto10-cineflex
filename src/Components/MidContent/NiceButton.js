@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export default function NiceButton ({content}) {
     return (
-        <Button type="submit">{content}</Button>
+        <Button data-identifier="hour-minute-btn" type="submit">{content}</Button>
     )
 }
 

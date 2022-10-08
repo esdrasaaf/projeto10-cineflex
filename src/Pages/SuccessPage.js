@@ -14,28 +14,33 @@ export default function SuccessPage ({name, cpf, movieData, seatsArray}) {
         )
     }
 
+    let regexCpf = cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, 
+    function( regex, argumento1, argumento2, argumento3, argumento4 ) {
+           return argumento1 + '.' + argumento2 + '.' + argumento3 + '-' + argumento4;
+   })
+
     return (
         <SuccessContainer>
             <TitlePage>Pedido feito com sucesso!</TitlePage>
 
             <BuyerContent>
                 <h2>Filme e sessão</h2>
-                <span>{movieData.movie.title}</span>
-                <span>{movieData.day.date} - {movieData.name}</span>
+                <span data-identifier="movie-session-infos-reserve-finished">{movieData.movie.title}</span>
+                <span data-identifier="movie-session-infos-reserve-finished">{movieData.day.date} - {movieData.name}</span>
             </BuyerContent>
 
             <SeatsContent>
                 <h2>Ingressos</h2>
-                {seatsArray.map((n, idx) => <span key={idx}>Assento {n}</span>)}
+                {seatsArray.map((n, idx) => <span data-identifier="seat-infos-reserve-finished" key={idx}>Assento {n}</span>)}
             </SeatsContent>
 
             <BuyerContent>
                 <h2>Comprador</h2>
-                <span>Nome: {name}</span>
-                <span>CPF: {cpf}</span>
+                <span data-identifier="buyer-infos-reserve-finished">Nome: {name}</span>
+                <span data-identifier="buyer-infos-reserve-finished">CPF: {regexCpf}</span>
             </BuyerContent>
 
-            <ButtonDiv>
+            <ButtonDiv data-identifier="back-to-home-btn">
                 <Link to={"/"}><NiceButton content={"Voltar para Home"}/></Link>
             </ButtonDiv>
         </SuccessContainer>

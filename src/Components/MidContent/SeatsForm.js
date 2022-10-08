@@ -31,15 +31,15 @@ export default function SeatsForms({reserveIds, setReserveIds, name, cpf, setNam
         <FormContainer onSubmit={postReserve}>
             <FormContent>
                 <label htmlFor="name">Nome do comprador:</label>
-                <input id="name" required onChange={(e) => setName(e.target.value)} placeholder="Digite o seu nome..."/>
+                <input data-identifier="buyer-name-input" id="name" required onChange={(e) => setName(e.target.value)} placeholder="Digite o seu nome..."/>
             </FormContent>
 
             <FormContent>
                 <label htmlFor="cpf">CPF do comprador</label>
-                <input id="cpf" required pattern="\d{3}.?\d{3}.?\d{3}-?\d{2}" onChange={(e) => setCpf(e.target.value)} placeholder="Digite seu CPF..."/>
+                <input data-identifier="buyer-cpf-input" id="cpf" required pattern="\d{3}.?\d{3}.?\d{3}-?\d{2}" onChange={(e) => setCpf(e.target.value)} placeholder="Digite seu CPF..."/>
             </FormContent>
 
-            <ReservButton>
+            <ReservButton data-identifier="reservation-btn">
                     <NiceButton content={"Reservar assento(s)"}/>
             </ReservButton>
         </FormContainer>

@@ -8,7 +8,7 @@ export default function SeatFooter ({responseState}) {
     return (
         <Container>
             <PosterImg src={responseState.movie.posterURL} alt="Poster Filme"/>
-            <DataSession>
+            <DataSession data-identifier="movie-and-session-infos-preview">
                 <span>{responseState.movie.title}</span>
                 <span>{responseState.day.weekday} - {responseState.name}</span>
             </DataSession>

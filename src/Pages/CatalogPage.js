@@ -22,7 +22,7 @@ export default function Catalog({setSeatsArray}) {
 
             <MovieList>
                 {movieList.map((m, i) => (
-                    <Movie key={i}>
+                    <Movie key={i} data-identifier="movie-outdoor">
                         <Link to={`/movie/${m.id}`}><MoviePoster src={m.posterURL} alt="Poster do Filme" /></Link>
                     </Movie>
                 ))}
